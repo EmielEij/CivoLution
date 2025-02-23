@@ -13,7 +13,7 @@ SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Executable
-TARGET = CivoLution
+TARGET = CivOlution
 
 # Build target
 $(TARGET): $(OBJS)
