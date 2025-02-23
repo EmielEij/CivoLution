@@ -23,4 +23,3 @@ At the start, your cities will have a population of artisans and workers who are
 After this, expand specializations, improve logistics, and progress toward some form of industrialization.prob mechanization (with wind mills and water power) into a full blown industrialization. (coal power heavy industry)
 
 ## how to run
-

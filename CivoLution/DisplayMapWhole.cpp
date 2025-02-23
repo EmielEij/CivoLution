@@ -107,34 +107,42 @@ bool DisplayMapWhole::DisplayMapImageWithSeedAndNext(int tileSize, int seed)
     int width = mapData->getWidth();
     int height = mapData->getHeight();
 
-    // Create a window that fits the entire map
-    sf::RenderWindow window(sf::VideoMode(width * tileSize, height * tileSize), "Map Display");
+    // Get the desktop resolution for fullscreen
+    sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
+
+    // Create a fullscreen window
+    sf::RenderWindow window(desktopMode, "Map Display", sf::Style::Fullscreen);
+
+    // Calculate the scaling factor to fit the map to the screen
+    float scaleX = static_cast<float>(desktopMode.width) / (width * tileSize);
+    float scaleY = static_cast<float>(desktopMode.height) / (height * tileSize);
+    float scale = std::min(scaleX, scaleY); // Use the smaller scale to ensure the map fits entirely
 
     // Create a shape that will be used for drawing tiles
-    sf::RectangleShape tile(sf::Vector2f(tileSize, tileSize));
+    sf::RectangleShape tile(sf::Vector2f(tileSize * scale, tileSize * scale));
 
     // Create buttons
-    sf::RectangleShape generateButton(sf::Vector2f(150, 50)); // Generate New Map button
-    generateButton.setPosition(10, 10); // Top-left corner
+    sf::RectangleShape generateButton(sf::Vector2f(150 * scale, 50 * scale)); // Generate New Map button
+    generateButton.setPosition(10 * scale, 10 * scale); // Top-left corner
     generateButton.setFillColor(sf::Color::Green);
 
-    sf::RectangleShape acceptButton(sf::Vector2f(150, 50)); // Accept Map button
-    acceptButton.setPosition(window.getSize().x - 160, 10); // Top-right corner
+    sf::RectangleShape acceptButton(sf::Vector2f(150 * scale, 50 * scale)); // Accept Map button
+    acceptButton.setPosition(desktopMode.width - 160 * scale, 10 * scale); // Top-right corner
     acceptButton.setFillColor(sf::Color::Red);
 
     // Button labels
     sf::Font font;
-    if (!font.loadFromFile("Resources/liberation-sans-italic.ttf")) {
+    if (!font.loadFromFile("Resources/Fonts/liberation-sans-italic.ttf")) {
         std::cerr << "Failed to load font!" << std::endl;
         return false;
     }
 
-    sf::Text generateText("Generate", font, 20);
-    generateText.setPosition(20, 20);
+    sf::Text generateText("Generate", font, 20 * scale);
+    generateText.setPosition(20 * scale, 20 * scale);
     generateText.setFillColor(sf::Color::White);
 
-    sf::Text acceptText("Accept", font, 20);
-    acceptText.setPosition(window.getSize().x - 140, 20);
+    sf::Text acceptText("Accept", font, 20 * scale);
+    acceptText.setPosition(desktopMode.width - 140 * scale, 20 * scale);
     acceptText.setFillColor(sf::Color::White);
 
     std::vector<std::vector<TileType>>* map = mapData->getMapTiles();
@@ -176,7 +184,7 @@ bool DisplayMapWhole::DisplayMapImageWithSeedAndNext(int tileSize, int seed)
             for (int x = 0; x < width; ++x)
             {
                 // Set position for current tile
-                tile.setPosition(x * tileSize, y * tileSize);
+                tile.setPosition(x * tileSize * scale, y * tileSize * scale);
 
                 // Set color based on tile type
                 switch ((*map)[y][x])
@@ -194,7 +202,7 @@ bool DisplayMapWhole::DisplayMapImageWithSeedAndNext(int tileSize, int seed)
                         tile.setFillColor(sf::Color(238, 214, 175));  // Sand
                         break;
                     case TileType::MOUNTAIN:
-                        tile.setFillColor(sf::Color(139, 137, 137)); // Gray
+                        tile.setFillColor(sf::Color(139, 137, 137));  // Gray
                         break;
                     case TileType::ICE:
                         tile.setFillColor(sf::Color(255, 255, 255));  // White
