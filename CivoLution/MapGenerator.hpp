@@ -1,11 +1,18 @@
 #ifndef MAP_GENERATOR_H
 #define MAP_GENERATOR_H
 
+#include <vector>
+#include "MapData.hpp"
+#include "lib/FastNoiseLite/FastNoiseLite.h"
+
 class MapGenerator
 {
 public:
-    MapGenerator();
-    ~MapGenerator();
+    MapGenerator(float noiseScale);
+    MapGenerator(int width, int height);
+    MapData* GenerateMap(int width, int height, int tileSize );
+private:
+    float noiseScale;
 };
 
 #endif

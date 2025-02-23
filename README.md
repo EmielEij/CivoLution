@@ -9,8 +9,8 @@ At the start, your cities will have a population of artisans and workers who are
 
 - [X] Set up a C++ project that can display a map.
 - [X] Implement terrain generation.
-- [ ] Split up the code into different classes.
-- [ ] Create a display class to visualize the map for tweaking.
+- [X] Split up the code into different classes.
+- [X] Create a display class to visualize the map for tweaking.
 - [ ]  Adjust generation settings to create a well-balanced map.
 - [ ] Add resources to the map.
 - [ ] Implement player map interactions (scrolling, zooming, clicking, etc.).

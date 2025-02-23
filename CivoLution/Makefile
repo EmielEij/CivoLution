@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -Werror -pedantic -O3 -g
 SFML_LIB = -lsfml-graphics -lsfml-window -lsfml-system
 
 # Source files
-SRCS = main.cpp
+SRCS = main.cpp DisplayMapWhole.cpp MapData.cpp MapGenerator.cpp
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
