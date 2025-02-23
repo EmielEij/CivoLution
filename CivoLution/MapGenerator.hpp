@@ -10,7 +10,7 @@ class MapGenerator
 public:
     MapGenerator(float noiseScale);
     MapGenerator(int width, int height);
-    MapData* GenerateMap(int width, int height, int tileSize );
+    MapData* GenerateMap(int width, int height, int tileSize, int seed);
 private:
     float noiseScale;
 };

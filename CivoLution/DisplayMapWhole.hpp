@@ -12,6 +12,7 @@ class DisplayMapWhole
         DisplayMapWhole(MapData* mapData);
         void DisplayMapText();
         void DisplayMapImage(int tileSize);
+        bool DisplayMapImageWithSeedAndNext(int tileSize, int seed);
     private:
         MapData* mapData;
 };

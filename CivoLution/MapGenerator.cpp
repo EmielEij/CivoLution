@@ -10,7 +10,7 @@ MapGenerator::MapGenerator( int width, int height )
     this->noiseScale = 3.0f / std::max(width, height);
 }
 
-MapData* MapGenerator::GenerateMap(int width, int height, int tileSize)
+MapData* MapGenerator::GenerateMap(int width, int height, int tileSize, int seed)
 {
 MapData* mapData = new MapData(width, height, tileSize);
 
@@ -18,6 +18,7 @@ FastNoiseLite noise;
 // noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2S);
 noise.SetFrequency(this->noiseScale);
+noise.SetSeed(seed);
 
 std::vector<std::vector<TileType>> *map = mapData->getMapTiles();
 // Generate terrain

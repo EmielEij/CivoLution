@@ -11,7 +11,9 @@ At the start, your cities will have a population of artisans and workers who are
 - [X] Implement terrain generation.
 - [X] Split up the code into different classes.
 - [X] Create a display class to visualize the map for tweaking.
-- [ ]  Adjust generation settings to create a well-balanced map.
+- [X] Adjust generation settings to create a well-balanced map.
+- [X] Create a menu type to select a map.
+- [ ] Add rivers.
 - [ ] Add resources to the map.
 - [ ] Implement player map interactions (scrolling, zooming, clicking, etc.).
 - [ ] Implement cities.
