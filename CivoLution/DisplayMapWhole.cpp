@@ -5,6 +5,11 @@ DisplayMapWhole::DisplayMapWhole(MapData* mapData)
     this->mapData = mapData;
 }
 
+DisplayMapWhole::~DisplayMapWhole()
+{
+    delete this->mapData;
+}
+
 void DisplayMapWhole::DisplayMapText()
 {
     std::vector<std::vector<TileType>> *map = this->mapData->getMapTiles();
@@ -29,6 +34,9 @@ void DisplayMapWhole::DisplayMapText()
                break;
            case TileType::ICE:
                std::cout << "I";
+               break;
+           case TileType::RIVER:
+               std::cout << "R";
                break;
             }
         }
@@ -156,22 +164,22 @@ bool DisplayMapWhole::DisplayMapImageWithSeedAndNext(int tileSize, int seed)
                 window.close();
 
             // Handle mouse clicks
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-
-                // Check if the "Generate New Map" button is clicked
-                if (generateButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+            
+                if (generateButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
                 {
+                    std::cout << "Generating new map... clicked" << std::endl;
                     window.close();
-                    return false; // Return false to indicate a new map should be generated
+                    return false;
                 }
-
-                // Check if the "Accept Map" button is clicked
-                if (acceptButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+            
+                if (acceptButton.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
                 {
+                    std::cout << "Accepting map... clicked" << std::endl;
                     window.close();
-                    return true; // Return true to indicate the map is accepted
+                    return true;
                 }
             }
         }
@@ -207,6 +215,8 @@ bool DisplayMapWhole::DisplayMapImageWithSeedAndNext(int tileSize, int seed)
                     case TileType::ICE:
                         tile.setFillColor(sf::Color(255, 255, 255));  // White
                         break;
+                    case TileType::RIVER:
+                        tile.setFillColor(sf::Color(0, 0, 255));      // Blue
                 }
 
                 window.draw(tile);
@@ -282,8 +292,9 @@ void DisplayMapWhole::DisplayMapImage(int tileSize)
                     case TileType::ICE:
                         tile.setFillColor(sf::Color(255, 255, 255));  // White
                         break;
+                    case TileType::RIVER:
+                        tile.setFillColor(sf::Color(0, 0, 255));      // Blue
                 }
-                
                 window.draw(tile);
             }
         }

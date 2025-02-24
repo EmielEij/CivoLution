@@ -2,6 +2,9 @@
 #define MAP_GENERATOR_H
 
 #include <vector>
+#include <algorithm>
+#include <random>
+#include <unordered_map>
 #include "MapData.hpp"
 #include "lib/FastNoiseLite/FastNoiseLite.h"
 
@@ -13,6 +16,7 @@ public:
     MapData* GenerateMap(int width, int height, int tileSize, int seed);
 private:
     float noiseScale;
+    void GenerateRivers(MapData* mapData);
 };
 
 #endif

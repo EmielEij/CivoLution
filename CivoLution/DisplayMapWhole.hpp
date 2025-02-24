@@ -10,6 +10,7 @@ class DisplayMapWhole
 {
     public:
         DisplayMapWhole(MapData* mapData);
+        ~DisplayMapWhole();
         void DisplayMapText();
         void DisplayMapImage(int tileSize);
         bool DisplayMapImageWithSeedAndNext(int tileSize, int seed);

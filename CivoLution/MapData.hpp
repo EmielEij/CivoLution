@@ -10,7 +10,8 @@ enum class TileType
     FOREST = 2,
     DESERT = 3,
     MOUNTAIN = 4,
-    ICE = 5
+    ICE = 5,
+    RIVER = 6
 };
 
 class MapData
