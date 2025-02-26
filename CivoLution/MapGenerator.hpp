@@ -1,6 +1,7 @@
 #ifndef MAP_GENERATOR_H
 #define MAP_GENERATOR_H
 
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <random>

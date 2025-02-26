@@ -22,7 +22,7 @@ int main() {
         MapData* mapData = mapGenerator.GenerateMap( MAP_WIDTH, MAP_HEIGHT, TILE_SIZE , seed );
         DisplayMapWhole displayMapWhole( mapData );
         seedFound = displayMapWhole.DisplayMapImageWithSeedAndNext(TILE_SIZE, seed);
-        delete mapData;
+        // delete mapData;
     }
 
     std::cout << "Seed: " << seed << std::endl;
